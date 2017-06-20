@@ -1,0 +1,29 @@
+version: "3"
+
+services: 
+
+  web:
+    image: haciendo_web
+    environment:
+     - API_SERVER=http://api:5000
+    ports:
+      - 15080:80
+       
+  api:
+    image: haciendo_api
+    environment:
+     - SMS_SERVER=http://sms:5001
+     - YANDEX_KEY=${YANDEX_KEY}
+    ports:
+      - 15000:5000
+
+  sms:
+    image: haciendo_sms
+    environment:
+     - TROPO_USER=${TROPO_USER}
+     - TROPO_PASS=${TROPO_PASS}
+     - TROPO_URL=http://75b0a0d3.ngrok.io  # change this to your ngrok server.
+    ports: 
+      - 15001:5001
+
+  
